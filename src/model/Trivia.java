@@ -9,7 +9,7 @@ public class Trivia {
 	String[][] preguntasRespuestasMedio = {{"¿Cómo se llama el lugar donde se realizan las carreras de camellos?", "Hipodromo"}};
 	String[][] preguntasRespuestasDificil = {{"¿Cómo se llama el lugar donde se realizan las carreras de patos?", "Hipodromo"}};
 	
-	String dificultad;
+	String dificultad = "";
 	
 	public Trivia() {
 		
