@@ -10,7 +10,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("ELIGE");
-		trivia.selectorPreguntas(sc.nextLine());
+		trivia.selectorPreguntas();
 	}
 
 }
