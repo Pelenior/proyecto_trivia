@@ -32,6 +32,8 @@ public class Trivia {
 		String decision;
 		int respuesta;
 		
+		long currentTimeInSeconds = System.currentTimeMillis() / 1000;
+		
 		switch(dificultad) {
 		
 			case "1":
@@ -52,8 +54,12 @@ public class Trivia {
 				decision = sc.nextLine();
 				if(decision.equalsIgnoreCase(preguntasRespuestasDificil[respuesta][1])) System.out.println("Bombardeen a Diego");
 			break;
-				
 		}
+		
+
+        System.out.println(currentTimeInSeconds);
+		
+		calculoPuntos();
 	}
 	
 	public void selectorDificultad() {
@@ -64,6 +70,9 @@ public class Trivia {
 		setDificultad(sc.nextLine());
 	}
 
-	
+	public int calculoPuntos() {
+		
+		return 1;
+	}
 
 }
