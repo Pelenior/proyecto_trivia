@@ -32,7 +32,7 @@ public class Trivia {
 		String decision;
 		int respuesta;
 		
-		long currentTimeInSeconds = System.currentTimeMillis() / 1000;
+		long tiempoInicio = System.currentTimeMillis() / 1000;
 		
 		switch(dificultad) {
 		
@@ -55,19 +55,38 @@ public class Trivia {
 				if(decision.equalsIgnoreCase(preguntasRespuestasDificil[respuesta][1])) System.out.println("Bombardeen a Diego");
 			break;
 		}
-		
 
-        System.out.println(currentTimeInSeconds);
-		
+        System.out.println("Has tardado " + ((System.currentTimeMillis() / 1000) - tiempoInicio) + " en responder");
+		long tiempoTardado = System.currentTimeMillis() / 1000 - tiempoInicio;
 		calculoPuntos();
 	}
 	
 	public void selectorDificultad() {
 		Scanner sc = new Scanner(System.in);
-	
-		System.out.println("SLECCIONA UNA DIFICULTAD");
 		
-		setDificultad(sc.nextLine());
+		boolean confirmar = false;
+		
+		while(confirmar == false) {
+			System.out.println("   SELECCIONA UNA DIFICULTAD\n" + Color.GREEN_BOLD_BRIGHT + "\n   1.FACIL  " + Color.YELLOW_BOLD_BRIGHT + "2.MEDIO  " + Color.RED_BOLD + "3.DIFICL" + Color.RESET);
+			
+			setDificultad(sc.nextLine());
+			while(!getDificultad().equalsIgnoreCase("1") && !getDificultad().equalsIgnoreCase("2") && !getDificultad().equalsIgnoreCase("3")) {
+				System.out.println(Color.RED_BOLD_BRIGHT + getDificultad() + " no es un dificultad valida" + Color.RESET);
+				setDificultad(sc.nextLine());
+			}
+			
+			if(getDificultad().equalsIgnoreCase("1")) System.out.println("DIFICULTAD: " + Color.GREEN_BOLD_BRIGHT + "FACIL");
+			else if(getDificultad().equalsIgnoreCase("2")) System.out.println("DIFICULTAD: " + Color.YELLOW_BOLD_BRIGHT + "MEDIO" );
+			else System.out.println("DIFICULTAD: " + Color.RED_BOLD_BRIGHT + "DIFICL" );
+			System.out.println(Color.RESET);
+			
+			System.out.println("¿Estas seguro de esta dificultad?" + "\n               Y/N");
+			
+			if(sc.nextLine().equalsIgnoreCase("y")) confirmar = true;
+		}
+		
+		
+		
 	}
 
 	public int calculoPuntos() {
