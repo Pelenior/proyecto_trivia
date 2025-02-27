@@ -8,9 +8,10 @@ public class Main {
 	public static void main(String[] args) {
 		Trivia trivia = new Trivia();
 		Scanner sc = new Scanner(System.in);
+		Jugador jugador = new Jugador();
 		
 		trivia.selectorDificultad();
-		trivia.selectorPreguntas();
+		trivia.selectorPreguntas(jugador);
 	}
 
 }

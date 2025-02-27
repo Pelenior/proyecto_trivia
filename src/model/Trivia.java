@@ -24,41 +24,53 @@ public class Trivia {
 	}
 	
 	
-	
-	
-	public void selectorPreguntas() {
+	public void selectorPreguntas(Jugador jugador) {
 		Random random = new Random();
 		Scanner sc = new Scanner(System.in);
 		String decision;
 		int respuesta;
+		boolean acertado = false;
 		
 		long tiempoInicio = System.currentTimeMillis() / 1000;
 		
 		switch(dificultad) {
 		
+		//DIFICULTAD FACIL
 			case "1":
 				respuesta = random.nextInt(preguntasRespuestasFacil.length);
 				System.out.println(preguntasRespuestasFacil[respuesta][0]);
 				decision = sc.nextLine();
-				if(decision.equalsIgnoreCase(preguntasRespuestasFacil[respuesta][1])) System.out.println("Bombardeen a Diego");
+				if(decision.equalsIgnoreCase(preguntasRespuestasFacil[respuesta][1])) {
+					System.out.println("Bombardeen a Diego");
+					acertado = true;
+				}
 			break;
+		//DIFICULTAD MEDIO
 			case "2":
 				respuesta = random.nextInt(preguntasRespuestasMedio.length);
 				System.out.println(preguntasRespuestasMedio[respuesta][0]);
 				decision = sc.nextLine();
-				if(decision.equalsIgnoreCase(preguntasRespuestasMedio[respuesta][1])) System.out.println("Bombardeen a Diego");
+				if(decision.equalsIgnoreCase(preguntasRespuestasMedio[respuesta][1])) {
+					System.out.println("Bombardeen a Diego");
+					acertado = true;
+				}
 			break;
+		//DIFICULTAD DIFICIL
 			case "3":
 				respuesta = random.nextInt(preguntasRespuestasDificil.length);
 				System.out.println(preguntasRespuestasDificil[respuesta][0]);
 				decision = sc.nextLine();
-				if(decision.equalsIgnoreCase(preguntasRespuestasDificil[respuesta][1])) System.out.println("Bombardeen a Diego");
+				if(decision.equalsIgnoreCase(preguntasRespuestasDificil[respuesta][1])) { 
+					System.out.println("Bombardeen a Diego");
+					acertado = true;
+				}
 			break;
 		}
 
+		//CALCULO DEL TIEMPO
         System.out.println("Has tardado " + ((System.currentTimeMillis() / 1000) - tiempoInicio) + " en responder");
 		long tiempoTardado = System.currentTimeMillis() / 1000 - tiempoInicio;
-		calculoPuntos();
+		calculoPuntos(jugador, acertado, tiempoTardado);
 	}
 	
 	public void selectorDificultad() {
@@ -89,9 +101,21 @@ public class Trivia {
 		
 	}
 
-	public int calculoPuntos() {
+	public long calculoPuntos(Jugador jugador, boolean acertado, long tiempoTardado) {
+		long puntuacion = 1000;
 		
-		return 1;
+		
+		if(acertado == true) {
+			puntuacion = 1000 - (tiempoTardado * 10);
+		}
+		else if(acertado == false && tiempoTardado > 10) {
+			// Aqui restariamos puntos por fallar y tardar mucho
+			// seria algo como set(puntos del jugador)( los puntos - (tiempoTardado * 10)) 
+			// puntuacion = jugador.getPuntos() - (tiempoTardado * 10);
+		}
+		
+		
+		return puntuacion;
 	}
 
 }
