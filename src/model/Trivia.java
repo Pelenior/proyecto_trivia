@@ -122,28 +122,32 @@ public class Trivia {
 	 public void menu() {
 		  Scanner sc = new Scanner(System.in);
 		  String decision;
+		  boolean partida = false;
 		  
-	      System.out.println(Color.YELLOW_BOLD + "                   BIENVENIDO AL RELOJ DE ARENA"  + Color.YELLOW_BOLD_BRIGHT + "\n1.Iniciar Juego  |  2.¿Que es Reloj de Arena?  |  3.Salir\n");
-	      decision = sc.nextLine();
-	      while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3")) {
-	    	  System.out.println(Color.RED_BRIGHT + "Visto que ha respondido incorrectamente le recordamos que debe introducir" + Color.RED_BOLD_BRIGHT + " 1, 2 o 3");
-	    	  decision = sc.nextLine();
-	      }
-	      
-	      switch(decision) {
-	      
-		      case "1":
-		    	 
-		    	  break;
-		      case "2":
-			    	ayuda(); 
-			      break;
-		      case "3":
-			    	 
-		    	  break;
-	      }
+		  while(partida != true) {
+		      System.out.println(Color.YELLOW_BOLD + "                   BIENVENIDO AL RELOJ DE ARENA"  + Color.YELLOW_BOLD_BRIGHT + "\n1.Iniciar Juego  |  2.¿Que es Reloj de Arena?  |  3.Salir\n" + Color.RESET);
+		      decision = sc.nextLine();
+		      while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3")) {
+		    	  System.out.println(Color.RED_BRIGHT + "Visto que ha respondido incorrectamente le recordamos que debe introducir" + Color.RED_BOLD_BRIGHT + " 1, 2 o 3");
+		    	  decision = sc.nextLine();
+		      }
+		      
+		      switch(decision) {
+		      
+			      case "1":
+			    	  partida = true;
+			    	  break;
+			      case "2":
+			    	  menuAyuda(); 
+				      break;
+			      case "3":
+			    	  partida = true; 
+			    	  break;
+		      }
+		  }
 	   }
-	 public void ayuda() {
+	 
+	 public void menuAyuda() {
 		 Scanner sc = new Scanner(System.in);
 		 String decision = "Si";
 		 
@@ -226,5 +230,24 @@ public class Trivia {
 		 }
 		 
 	 }
+
+	 public void menuPartida() {
+		 Scanner sc = new Scanner(System.in);
+		 String decision;
+		 
+		 System.out.println("ANTES DE EMPEZAR\n Selecciona el modo de juego: \n1.Individual 2.Multijugador(2-4 jugadores) 3.Atras");
+		 decision = sc.nextLine();
+		 
+		 switch(decision) {
+		 
+		 case "1":
+			 break;
+		 case "2":
+			 break;
+		 case "3":
+			 break;
+		 }
+	 }
+
 
 }

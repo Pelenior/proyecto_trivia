@@ -10,6 +10,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		Jugador jugador = new Jugador();
 		
+		
 		trivia.menu();
 		trivia.selectorDificultad();
 		trivia.selectorPreguntas(jugador);
