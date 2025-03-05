@@ -248,7 +248,7 @@ public class Trivia {
 		 System.out.println("ANTES DE EMPEZAR\n Selecciona el modo de juego: \n1.Individual 2.Multijugador(2-4 jugadores) 3.Atras");
 		 decision = sc.nextLine();
 		 
-		 while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3") && !decision.equals("4")) {
+		 while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3")) {
 			 tries++;
 			 if(tries == 1) System.out.println(Color.RED_BOLD + "El numero debe estar entre 1,2 o 3" + Color.RESET);
 			 else System.out.println(Color.GREEN_BOLD + "Tal vez deberias revisar el manual de menus" + Color.RESET);
@@ -279,8 +279,6 @@ public class Trivia {
 			 partida = true;
 			 
 			//Aqui estaria guapo meter un leaderboard o algo asi pero lo dejo para luego
-			 break;
-		 case "3":
 			 break;
 		 }
 	 }
