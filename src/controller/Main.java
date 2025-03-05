@@ -12,8 +12,11 @@ public class Main {
 		
 		
 		trivia.menu();
-		trivia.selectorDificultad();
-		trivia.selectorPreguntas(jugador);
+		
+		if(trivia.getSalir() == false) {
+			trivia.selectorDificultad();
+			trivia.selectorPreguntas(jugador);
+		}
 	}
 
 }

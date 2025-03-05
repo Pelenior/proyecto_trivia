@@ -12,6 +12,13 @@ public class Trivia {
 	
 	String dificultad = "";
 	
+	String jugadores = "";
+	
+	boolean individual = false;
+	boolean multijugador = false;
+	boolean partida = false;
+	boolean salir = false;
+	
 	public Trivia() {
 		
 	}
@@ -24,6 +31,9 @@ public class Trivia {
 		this.dificultad = dificultad;
 	}
 	
+	public boolean getSalir() {
+		return salir;
+	}
 	
 	public void selectorPreguntas(Jugador jugador) {
 		Random random = new Random();
@@ -67,7 +77,6 @@ public class Trivia {
 				}
 			break;
 		}
-
 		//CALCULO DEL TIEMPO
         System.out.println("Has tardado " + ((System.currentTimeMillis() / 1000) - tiempoInicio) + " en responder");
 		long tiempoTardado = System.currentTimeMillis() / 1000 - tiempoInicio;
@@ -122,9 +131,8 @@ public class Trivia {
 	 public void menu() {
 		  Scanner sc = new Scanner(System.in);
 		  String decision;
-		  boolean partida = false;
 		  
-		  while(partida != true) {
+		  while(partida != true && salir != true) {
 		      System.out.println(Color.YELLOW_BOLD + "                   BIENVENIDO AL RELOJ DE ARENA"  + Color.YELLOW_BOLD_BRIGHT + "\n1.Iniciar Juego  |  2.¿Que es Reloj de Arena?  |  3.Salir\n" + Color.RESET);
 		      decision = sc.nextLine();
 		      while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3")) {
@@ -135,19 +143,20 @@ public class Trivia {
 		      switch(decision) {
 		      
 			      case "1":
-			    	  partida = true;
+			    	  menuPartida();
 			    	  break;
 			      case "2":
 			    	  menuAyuda(); 
 				      break;
 			      case "3":
-			    	  partida = true; 
+			    	  salir = true;
+			    	  System.out.println("Saliendo...");
 			    	  break;
 		      }
 		  }
 	   }
 	 
-	 public void menuAyuda() {
+	public void menuAyuda() {
 		 Scanner sc = new Scanner(System.in);
 		 String decision = "Si";
 		 
@@ -234,20 +243,47 @@ public class Trivia {
 	 public void menuPartida() {
 		 Scanner sc = new Scanner(System.in);
 		 String decision;
+		 int tries = 0;
 		 
 		 System.out.println("ANTES DE EMPEZAR\n Selecciona el modo de juego: \n1.Individual 2.Multijugador(2-4 jugadores) 3.Atras");
 		 decision = sc.nextLine();
 		 
+		 while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3") && !decision.equals("4")) {
+			 tries++;
+			 if(tries == 1) System.out.println(Color.RED_BOLD + "El numero debe estar entre 1,2 o 3" + Color.RESET);
+			 else System.out.println(Color.GREEN_BOLD + "Tal vez deberias revisar el manual de menus" + Color.RESET);
+			 decision = sc.nextLine();
+			 
+		 }
 		 switch(decision) {
 		 
 		 case "1":
+			 System.out.println("Bienvenido al modo Individual\n");
+			 individual = true;
+			 partida = true;
+			 
+			 //Aqui estaria guapo meter un leaderboard o algo asi pero lo dejo para luego
 			 break;
 		 case "2":
+			 System.out.println("Bienvenido al modo multijugador");
+			 System.out.println("A continuacion deberas elegir el numero de jugadores, entre 2-4\n");
+			 
+			 jugadores = sc.nextLine();
+			 while(!jugadores.equals("1") && !jugadores.equals("2") && !jugadores.equals("3") && !jugadores.equals("4")) {
+				 tries++;
+				 if(tries == 1) System.out.println(Color.RED_BOLD + "El numero debe estar entre 1,2 o 3" + Color.RESET);
+				 else System.out.println(Color.GREEN_BOLD + "Tal vez deberias revisar el manual de menus" + Color.RESET);
+				 jugadores = sc.nextLine();
+			 }
+			 multijugador = true;
+			 partida = true;
+			 
+			//Aqui estaria guapo meter un leaderboard o algo asi pero lo dejo para luego
 			 break;
 		 case "3":
 			 break;
 		 }
 	 }
-
+	 
 
 }
