@@ -3,8 +3,11 @@ package model;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Trivia {
+	
+	Scanner sc;
 	
 	String[][] preguntasRespuestasFacil = {{"¿Cómo se llama el lugar donde se realizan las carreras de caballos?", "Hipodromo"}};
 	String[][] preguntasRespuestasMedio = {{"¿Cómo se llama el lugar donde se realizan las carreras de camellos?", "Hipodromo"}};
@@ -13,15 +16,26 @@ public class Trivia {
 	String dificultad = "";
 	
 	String jugadoresStr = "";
-	int jugadores = 0;
+	int numJugadores = 0;
 	
 	boolean individual = false;
 	boolean multijugador = false;
 	boolean partida = false;
 	boolean salir = false;
 	
-	public Trivia() {
-		
+	ArrayList<Jugador> jugadores = new ArrayList<>();
+	
+	private void init()
+	{
+		for(int i = 0; i < 4; i++)
+		{
+			jugadores.add(new Jugador());
+		}
+	}
+	
+	public Trivia(Scanner sc) {
+		this.sc = sc;
+		init();
 	}
 	
 	public String getDificultad() {
@@ -36,14 +50,25 @@ public class Trivia {
 		return salir;
 	}
 	
+	public int getNumJugadores()
+	{
+		return numJugadores;
+	}
+	
+	public ArrayList<Jugador> getJugadores()
+	{
+		return jugadores;
+	}
+	
 	public void selectorPreguntas(Jugador jugador) {
 		Random random = new Random();
-		Scanner sc = new Scanner(System.in);
 		String decision;
 		int respuesta;
 		boolean acertado = false;
 		
 		long tiempoInicio = System.currentTimeMillis() / 1000;
+		
+		System.out.println("Turno de " + jugador.getNombre());
 		
 		switch(dificultad) {
 		
@@ -53,8 +78,12 @@ public class Trivia {
 				System.out.println(preguntasRespuestasFacil[respuesta][0]);
 				decision = sc.nextLine();
 				if(decision.equalsIgnoreCase(preguntasRespuestasFacil[respuesta][1])) {
-					System.out.println("Bombardeen a Diego");
+					System.out.println("¡Respuesta correcta!");
 					acertado = true;
+				}
+				else
+				{
+					System.out.println("¡Qué pena! ¡Respuesta incorrecta!");
 				}
 			break;
 		//DIFICULTAD MEDIO
@@ -63,8 +92,12 @@ public class Trivia {
 				System.out.println(preguntasRespuestasMedio[respuesta][0]);
 				decision = sc.nextLine();
 				if(decision.equalsIgnoreCase(preguntasRespuestasMedio[respuesta][1])) {
-					System.out.println("Bombardeen a Diego");
+					System.out.println("¡Respuesta correcta!");
 					acertado = true;
+				}
+				else
+				{
+					System.out.println("¡Qué pena! ¡Respuesta incorrecta!");
 				}
 			break;
 		//DIFICULTAD DIFICIL
@@ -73,8 +106,12 @@ public class Trivia {
 				System.out.println(preguntasRespuestasDificil[respuesta][0]);
 				decision = sc.nextLine();
 				if(decision.equalsIgnoreCase(preguntasRespuestasDificil[respuesta][1])) { 
-					System.out.println("Bombardeen a Diego");
+					System.out.println("¡Respuesta correcta!");
 					acertado = true;
+				}
+				else
+				{
+					System.out.println("¡Qué pena! ¡Respuesta incorrecta!");
 				}
 			break;
 		}
@@ -86,7 +123,6 @@ public class Trivia {
 	}
 	
 	public void selectorDificultad() {
-		Scanner sc = new Scanner(System.in);
 		
 		boolean confirmar = false;
 		
@@ -129,7 +165,6 @@ public class Trivia {
 	}
 	
 	 public void menu() {
-		  Scanner sc = new Scanner(System.in);
 		  String decision;
 		  
 		  while(partida != true && salir != true) {
@@ -157,7 +192,6 @@ public class Trivia {
 	   }
 	 
 	public void menuAyuda() {
-		 Scanner sc = new Scanner(System.in);
 		 String decision = "Si";
 		 
 		 while(decision.equalsIgnoreCase("Si")) {
@@ -241,7 +275,6 @@ public class Trivia {
 	 }
 
 	 public void menuPartida() {
-		 Scanner sc = new Scanner(System.in);
 		 String decision;
 		 int tries = 0;
 		 
@@ -261,6 +294,7 @@ public class Trivia {
 			 System.out.println("Bienvenido al modo Individual\n");
 			 individual = true;
 			 partida = true;
+			 numJugadores = 1;
 			 
 			 //Aqui estaria guapo meter un leaderboard o algo asi pero lo dejo para luego
 			 break;
@@ -280,17 +314,17 @@ public class Trivia {
 			 {
 				 case "2":
 				 {
-					 jugadores = 2;
+					 numJugadores = 2;
 					 break;
 				 }
 				 case "3":
 				 {
-					 jugadores = 3;
+					 numJugadores = 3;
 					 break;
 				 }
 				 case "4":
 				 {
-					 jugadores = 4;
+					 numJugadores = 4;
 					 break;
 				 }
 			 }
@@ -299,6 +333,18 @@ public class Trivia {
 			 
 			//Aqui estaria guapo meter un leaderboard o algo asi pero lo dejo para luego
 			 break;
+		 }
+		 
+		 setJugadores();
+	 }
+	 
+	 //creamos nuevos jugadores con nuevos nombres
+	 private void setJugadores()
+	 {
+		 for(int i = 0; i < numJugadores; i++)
+		 {
+			 System.out.println("¿Cúal es el nombre del jugador " + (i + 1) + "?");
+			 jugadores.set(i, new Jugador(sc.nextLine()));
 		 }
 	 }
 	 

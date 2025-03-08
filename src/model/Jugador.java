@@ -26,6 +26,16 @@ public class Jugador {
 	       this.puntuacion = puntuacion; /*El parámetro (long puntuacion) es necesario. Setter necesita saber qué valor asignar a la
 	       							variable.*/
 	   }
+	   
+	   public void setNombre(String nombre)
+	   {
+		   this.nombre = nombre;
+	   }
+	   
+	   public String getNombre()
+	   {
+		   return nombre;
+	   }
 
 	  
 	}
