@@ -12,7 +12,8 @@ public class Trivia {
 	
 	String dificultad = "";
 	
-	String jugadores = "";
+	String jugadoresStr = "";
+	int jugadores = 0;
 	
 	boolean individual = false;
 	boolean multijugador = false;
@@ -80,7 +81,8 @@ public class Trivia {
 		//CALCULO DEL TIEMPO
         System.out.println("Has tardado " + ((System.currentTimeMillis() / 1000) - tiempoInicio) + " en responder");
 		long tiempoTardado = System.currentTimeMillis() / 1000 - tiempoInicio;
-		calculoPuntos(jugador, acertado, tiempoTardado);
+		
+		jugador.setPuntuacion(jugador.getPuntuacion() + calculoPuntos(acertado, tiempoTardado));
 	}
 	
 	public void selectorDificultad() {
@@ -111,7 +113,7 @@ public class Trivia {
 		
 	}
 
-	public long calculoPuntos(Jugador jugador, boolean acertado, long tiempoTardado) {
+	public long calculoPuntos(boolean acertado, long tiempoTardado) {
 		long puntuacion = 1000;
 		
 		
@@ -120,8 +122,6 @@ public class Trivia {
 		}
 		else if(acertado == false && tiempoTardado > 10) {
 			// Aqui restariamos puntos por fallar y tardar mucho
-			// seria algo como set(puntos del jugador)( los puntos - (tiempoTardado * 10)) 
-			// puntuacion = jugador.getPuntos() - (tiempoTardado * 10);
 		}
 		
 		
@@ -268,12 +268,31 @@ public class Trivia {
 			 System.out.println("Bienvenido al modo multijugador");
 			 System.out.println("A continuacion deberas elegir el numero de jugadores, entre 2-4\n");
 			 
-			 jugadores = sc.nextLine();
-			 while(!jugadores.equals("1") && !jugadores.equals("2") && !jugadores.equals("3") && !jugadores.equals("4")) {
+			 jugadoresStr = sc.nextLine();
+			 while(!jugadoresStr.equals("2") && !jugadoresStr.equals("3") && !jugadoresStr.equals("4")) {
 				 tries++;
-				 if(tries == 1) System.out.println(Color.RED_BOLD + "El numero debe estar entre 1,2 o 3" + Color.RESET);
+				 if(tries == 1) System.out.println(Color.RED_BOLD + "El numero debe estar entre 2, 3 o 4" + Color.RESET);
 				 else System.out.println(Color.GREEN_BOLD + "Tal vez deberias revisar el manual de menus" + Color.RESET);
-				 jugadores = sc.nextLine();
+				 jugadoresStr = sc.nextLine();
+			 }
+			 
+			 switch(jugadoresStr)
+			 {
+				 case "2":
+				 {
+					 jugadores = 2;
+					 break;
+				 }
+				 case "3":
+				 {
+					 jugadores = 3;
+					 break;
+				 }
+				 case "4":
+				 {
+					 jugadores = 4;
+					 break;
+				 }
 			 }
 			 multijugador = true;
 			 partida = true;
