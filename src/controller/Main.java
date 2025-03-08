@@ -6,16 +6,26 @@ import model.*;
 public class Main {
 
 	public static void main(String[] args) {
-		Trivia trivia = new Trivia();
-		Scanner sc = new Scanner(System.in);
-		Jugador jugador = new Jugador();
 		
+		Scanner sc = new Scanner(System.in);
+		Trivia trivia = new Trivia(sc);
+		
+		int turno = 0;
 		
 		trivia.menu();
 		
 		if(trivia.getSalir() == false) {
 			trivia.selectorDificultad();
-			trivia.selectorPreguntas(jugador);
+		}
+		
+		while(true)
+		{
+			trivia.selectorPreguntas(trivia.getJugadores().get(turno));
+			turno++;
+			if(turno >= trivia.getNumJugadores())
+			{
+				turno = 0;
+			}
 		}
 	}
 
