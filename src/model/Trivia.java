@@ -98,6 +98,7 @@ public class Trivia {
 				else
 				{
 					System.out.println("¡Qué pena! ¡Respuesta incorrecta!");
+					
 				}
 			break;
 		//DIFICULTAD DIFICIL
@@ -115,6 +116,7 @@ public class Trivia {
 				}
 			break;
 		}
+		if(random.nextInt(1, 11) == 5) System.out.println(Color.YELLOW_BRIGHT + Color.GREEN_BACKGROUND + "BOMBARDEEN A DIEGO" + Color.RESET);
 		//CALCULO DEL TIEMPO
         System.out.println("Has tardado " + ((System.currentTimeMillis() / 1000) - tiempoInicio) + " en responder");
 		long tiempoTardado = System.currentTimeMillis() / 1000 - tiempoInicio;
@@ -171,7 +173,7 @@ public class Trivia {
 		      System.out.println(Color.YELLOW_BOLD + "                   BIENVENIDO AL RELOJ DE ARENA"  + Color.YELLOW_BOLD_BRIGHT + "\n1.Iniciar Juego  |  2.¿Que es Reloj de Arena?  |  3.Salir\n" + Color.RESET);
 		      decision = sc.nextLine();
 		      while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3")) {
-		    	  System.out.println(Color.RED_BRIGHT + "Visto que ha respondido incorrectamente le recordamos que debe introducir" + Color.RED_BOLD_BRIGHT + " 1, 2 o 3");
+		    	  System.out.println(Color.RED_BRIGHT + "Visto que ha respondido incorrectamente le recordamos que debe introducir" + Color.RED_BOLD_BRIGHT + " 1, 2 o 3" + Color.RESET);
 		    	  decision = sc.nextLine();
 		      }
 		      
