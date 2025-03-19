@@ -6,9 +6,9 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Trivia {
-	
+	//Atributos
 	Scanner sc;
-	
+	//Matriz cuadrada de preguntas
 	String[][] preguntasRespuestasFacil = {{"¿Cuánto es 2+2?", "4"}, {"Es Mario y...", "Luigi"}, {"¿Quién escribió don Quijote?", "Cervantes"}, {"¿Quién es el protagonista de la saga \'The Legend of Zelda\'?", "Link"}, {"¿En qué año se descubrió América?", "1492"}};
 	String[][] preguntasRespuestasMedio = {{"¿Es \'Integer\' una clase?", "Si"}, {"¿Qué elemento tiene el símbolo \'Fe\'?", "Hierro"}, {"¿Es Java un lenguaje de programación orientado a objetos?", "Si"}, {"¿Qué estilo artístico es asociado con la obra de Salvador Dalí?", "Surrealismo"}, {"¿Cuál es el río más largo del mundo?", "Nilo"}};
 	String[][] preguntasRespuestasDificil = {{"¿En qué año se descubrió la tumba de Tutankamón?", "1922"}, {"¿En qué año se firmó la Declaración de la Independencia en Estados Unidos?", "1776"}, {"¿Quién es el mejor profesor de todos los tiempos sin duda alguna?", "Flan"}, {"¿Qué hace un elefante al despertar?", "Sombra"}, {"¿Cuál es el ipvx más moderno?", "ipv7"}};
@@ -25,7 +25,7 @@ public class Trivia {
 	boolean partida = false;
 	boolean salir = false;
 	
-	ArrayList<Jugador> jugadores = new ArrayList<>();
+	ArrayList<Jugador> jugadores = new ArrayList<>();//ArrayList de objeto jugador que recibe nombre jugadores
 	
 	private void init()
 	{
