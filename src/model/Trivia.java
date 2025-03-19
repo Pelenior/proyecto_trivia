@@ -18,6 +18,8 @@ public class Trivia {
 	String jugadoresStr = "";
 	int numJugadores = 0;
 	
+	//PRUEBA PARA VER SI SE SUBE EL CAMBIO AL GITHUB
+	
 	boolean individual = false;
 	boolean multijugador = false;
 	boolean partida = false;
