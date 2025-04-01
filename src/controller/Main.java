@@ -27,7 +27,8 @@ public class Main {
 			{
 				turno = 0;
 				turnoTotal++;
-				if((turnoTotal == 8 && trivia.getNumJugadores() == 1) || (turnoTotal == 3) && trivia.getNumJugadores() > 1) // El modo multijugador dura más
+				//Individual 8 preguntas, multijugador 3?
+				if((turnoTotal == 8 && trivia.getNumJugadores() == 1) || (turnoTotal == 3) && trivia.getNumJugadores() > 1) 
 				{
 					System.out.println(Color.RED_BOLD + "Última ronda" + Color.RESET + "...");
 					turnoTotal = 8;
@@ -47,7 +48,7 @@ public class Main {
 				}
 			}
 		}
-		String nombreGanador = trivia.getJugadores().get(0).getNombre(); // en caso de que queden todos con 0 puntos
+		String nombreGanador = trivia.getJugadores().get(0).getNombre(); // en caso de que queden todos con 0 puntos, 1 jugador gana
 		long puntuacionGanador = 0;
 		for(Jugador jugador : trivia.getJugadores())
 		{
