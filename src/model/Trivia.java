@@ -244,7 +244,7 @@ public class Trivia {
 				 					+ "\n\n-Sumado a esto el programa les ayudara si cometen algun error o les recomendara soluciones para ello" + Color.RESET);
 				 break;
 			 case "3":
-				 System.out.println("");
+				 System.out.println("Haber atendido a clase");
 				 break;
 			 case "4":
 				 System.out.println("MANUAL COMPLETO DE RELOJ DE ARENA");
