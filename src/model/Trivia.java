@@ -8,18 +8,15 @@ import java.util.ArrayList;
 public class Trivia {
 	//Atributos
 	Scanner sc;
-	//Matriz cuadrada de preguntas
+	//Matriz cuadrada de preguntas, con fila 1[0] la pregunta y fila 2[1] la respuesta
 	String[][] preguntasRespuestasFacil = {{"¿Cuánto es 2+2?", "4"}, {"Es Mario y...", "Luigi"}, {"¿Quién escribió don Quijote?", "Cervantes"}, {"¿Quién es el protagonista de la saga \'The Legend of Zelda\'?", "Link"}, {"¿En qué año se descubrió América?", "1492"}};
 	String[][] preguntasRespuestasMedio = {{"¿Es \'Integer\' una clase?", "Si"}, {"¿Qué elemento tiene el símbolo \'Fe\'?", "Hierro"}, {"¿Es Java un lenguaje de programación orientado a objetos?", "Si"}, {"¿Qué estilo artístico es asociado con la obra de Salvador Dalí?", "Surrealismo"}, {"¿Cuál es el río más largo del mundo?", "Nilo"}};
 	String[][] preguntasRespuestasDificil = {{"¿En qué año se descubrió la tumba de Tutankamón?", "1922"}, {"¿En qué año se firmó la Declaración de la Independencia en Estados Unidos?", "1776"}, {"¿Quién es el mejor profesor de todos los tiempos sin duda alguna?", "Flan"}, {"¿Qué hace un elefante al despertar?", "Sombra"}, {"¿Cuál es el ipvx más moderno?", "ipv7"}};
 	
 	String dificultad = "";
-	
 	String jugadoresStr = "";
 	int numJugadores = 0;
-	
-	//PRUEBA PARA VER SI SE SUBE EL CAMBIO AL GITHUB
-	
+		
 	boolean individual = false;
 	boolean multijugador = false;
 	boolean partida = false;
@@ -27,19 +24,19 @@ public class Trivia {
 	
 	ArrayList<Jugador> jugadores = new ArrayList<>();//ArrayList de objeto jugador que recibe nombre jugadores
 	
-	private void init()
-	{
-		for(int i = 0; i < 4; i++)
-		{
-			jugadores.add(new Jugador());
+	//se inicializa los jugadores
+	private void init() {
+		for(int i = 0; i < 4; i++) {//recorre toda lista Jugador con número máx 4
+			jugadores.add(new Jugador());//se añaden jugadores
 		}
 	}
 	
 	public Trivia(Scanner sc) {
 		this.sc = sc;
-		init();
+		init();//metodo que guarda jugadores
 	}
 	
+	//Getters y Setters
 	public String getDificultad() {
 		return dificultad;
 	}
@@ -52,13 +49,11 @@ public class Trivia {
 		return salir;
 	}
 	
-	public int getNumJugadores()
-	{
+	public int getNumJugadores() {
 		return numJugadores;
 	}
 	
-	public ArrayList<Jugador> getJugadores()
-	{
+	public ArrayList<Jugador> getJugadores() {
 		return jugadores;
 	}
 	
@@ -67,8 +62,8 @@ public class Trivia {
 		String decision;
 		int respuesta;
 		boolean acertado = false;
-		
-		long tiempoInicio = System.currentTimeMillis() / 1000;
+		//se guarda el tiempo en el que tardas a responder las preguntas
+		long tiempoInicio = System.currentTimeMillis() / 1000;//caluclar tiempo que tarda en responder (de milisegundo a segundos)
 		
 		System.out.println("Turno de " + jugador.getNombre());
 		
@@ -157,13 +152,13 @@ public class Trivia {
 	public long calculoPuntos(boolean acertado, long tiempoTardado) {
 		long puntuacion = 0;
 		
-		
+		//si acertado, se resta a 1000 el tiempo multi por 10
 		if(acertado == true) {
 			puntuacion = 1000 - (tiempoTardado * 10);
 		}
 		else if(acertado == false && tiempoTardado > 10) {
 			puntuacion -= tiempoTardado * 10;
-		}
+		}//si fallo y has tardado mas de 10seg te resta tu puntacion por el tiempo por 10
 		
 		
 		return puntuacion;
@@ -206,7 +201,7 @@ public class Trivia {
 			 while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3") && !decision.equals("4") && !decision.equals("5")) { 
 				 System.out.println("Veo que necesitas ayuda con el funcionamiento de los menus, ¿Es eso cierto?  (Tienes responder con Si o No)");
 				 decision = sc.nextLine();
-				 if(decision.equalsIgnoreCase("Si")) decision = "2";
+				 if(decision.equalsIgnoreCase("Si")) decision = "2";//te lleva durectamente a ayuda
 				 else if(decision.equalsIgnoreCase("No")) {
 					 System.out.println("Bienvenido, en que te puedo ayudar hoy:\n" + " 1.Modos de juego" + " 2.Menus" +  " 3.Programacion" + " 4.Manual completo" + " 5.Salir");
 					 decision = sc.nextLine();
@@ -301,7 +296,7 @@ public class Trivia {
 			 partida = true;
 			 numJugadores = 1;
 			 
-			 //Aqui estaria guapo meter un leaderboard o algo asi pero lo dejo para luego
+			 //Aqui estaria guapo meter un leaderboard (mejores puntuaciones) o algo asi pero lo dejo para luego
 			 break;
 		 case "2":
 			 System.out.println("Bienvenido al modo multijugador");
@@ -340,7 +335,7 @@ public class Trivia {
 			 break;
 		 }
 		 
-		 setJugadores();
+		 setJugadores();//crea jugadores
 	 }
 	 
 	 //creamos nuevos jugadores con nuevos nombres
@@ -356,7 +351,7 @@ public class Trivia {
 				 if(nombre.equals(""))
 					 System.out.println("Ese nombre no es válido");
 				 else
-					 jugadores.set(i, new Jugador(nombre)); 
+					 jugadores.set(i, new Jugador(nombre));//guarda jugador y nombre lo crea
 			 }
 			 nombre = "";
 		 }
