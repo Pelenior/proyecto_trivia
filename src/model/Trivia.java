@@ -9,14 +9,16 @@ public class Trivia {
 	
 	Scanner sc;
 	
-	String[][] preguntasRespuestasFacil = {{"¿Cómo se llama el lugar donde se realizan las carreras de caballos?", "Hipodromo"}};
-	String[][] preguntasRespuestasMedio = {{"¿Cómo se llama el lugar donde se realizan las carreras de camellos?", "Hipodromo"}};
-	String[][] preguntasRespuestasDificil = {{"¿Cómo se llama el lugar donde se realizan las carreras de patos?", "Hipodromo"}};
+	String[][] preguntasRespuestasFacil = {{"¿Cuánto es 2+2?", "4"}, {"Es Mario y...", "Luigi"}, {"¿Quién escribió don Quijote?", "Cervantes"}, {"¿Quién es el protagonista de la saga \'The Legend of Zelda\'?", "Link"}, {"¿En qué año se descubrió América?", "1492"}};
+	String[][] preguntasRespuestasMedio = {{"¿Es \'Integer\' una clase?", "Si"}, {"¿Qué elemento tiene el símbolo \'Fe\'?", "Hierro"}, {"¿Es Java un lenguaje de programación orientado a objetos?", "Si"}, {"¿Qué estilo artístico es asociado con la obra de Salvador Dalí?", "Surrealismo"}, {"¿Cuál es el río más largo del mundo?", "Nilo"}};
+	String[][] preguntasRespuestasDificil = {{"¿En qué año se descubrió la tumba de Tutankamón?", "1922"}, {"¿En qué año se firmó la Declaración de la Independencia en Estados Unidos?", "1776"}, {"¿Quién es el mejor profesor de todos los tiempos sin duda alguna?", "Flan"}, {"¿Qué hace un elefante al despertar?", "Sombra"}, {"¿Cuál es el ipvx más moderno?", "ipv7"}};
 	
 	String dificultad = "";
 	
 	String jugadoresStr = "";
 	int numJugadores = 0;
+	
+	//PRUEBA PARA VER SI SE SUBE EL CAMBIO AL GITHUB
 	
 	boolean individual = false;
 	boolean multijugador = false;
@@ -75,53 +77,54 @@ public class Trivia {
 		//DIFICULTAD FACIL
 			case "1":
 				respuesta = random.nextInt(preguntasRespuestasFacil.length);
-				System.out.println(preguntasRespuestasFacil[respuesta][0]);
+				System.out.println(Color.WHITE_BOLD + preguntasRespuestasFacil[respuesta][0] + Color.RESET);
 				decision = sc.nextLine();
 				if(decision.equalsIgnoreCase(preguntasRespuestasFacil[respuesta][1])) {
-					System.out.println("¡Respuesta correcta!");
+					System.out.println(Color.GREEN_BRIGHT + "¡Respuesta correcta!" + Color.RESET);
 					acertado = true;
 				}
 				else
 				{
-					System.out.println("¡Qué pena! ¡Respuesta incorrecta!");
+					System.out.println("¡Qué pena! " + Color.RED + "Respuesta incorrecta" + Color.RESET + ", la respuesta correcta era: " + preguntasRespuestasFacil[respuesta][1]);
 				}
 			break;
 		//DIFICULTAD MEDIO
 			case "2":
 				respuesta = random.nextInt(preguntasRespuestasMedio.length);
-				System.out.println(preguntasRespuestasMedio[respuesta][0]);
+				System.out.println(Color.WHITE_BOLD + preguntasRespuestasMedio[respuesta][0] + Color.RESET);
 				decision = sc.nextLine();
 				if(decision.equalsIgnoreCase(preguntasRespuestasMedio[respuesta][1])) {
-					System.out.println("¡Respuesta correcta!");
+					System.out.println(Color.GREEN_BRIGHT + "¡Respuesta correcta!" + Color.RESET);
 					acertado = true;
 				}
 				else
 				{
-					System.out.println("¡Qué pena! ¡Respuesta incorrecta!");
+					System.out.println("¡Qué pena! " + Color.RED + "Respuesta incorrecta" + Color.RESET + ", la respuesta correcta era: " + preguntasRespuestasMedio[respuesta][1]);
 					
 				}
 			break;
 		//DIFICULTAD DIFICIL
 			case "3":
 				respuesta = random.nextInt(preguntasRespuestasDificil.length);
-				System.out.println(preguntasRespuestasDificil[respuesta][0]);
+				System.out.println(Color.WHITE_BOLD + preguntasRespuestasDificil[respuesta][0] + Color.RESET);
 				decision = sc.nextLine();
 				if(decision.equalsIgnoreCase(preguntasRespuestasDificil[respuesta][1])) { 
-					System.out.println("¡Respuesta correcta!");
+					System.out.println(Color.GREEN_BRIGHT + "¡Respuesta correcta!" + Color.RESET);
 					acertado = true;
 				}
 				else
 				{
-					System.out.println("¡Qué pena! ¡Respuesta incorrecta!");
+					System.out.println("¡Qué pena! " + Color.RED + "Respuesta incorrecta" + Color.RESET + ", la respuesta correcta era: " + preguntasRespuestasDificil[respuesta][1]);
 				}
 			break;
 		}
-		if(random.nextInt(1, 11) == 5) System.out.println(Color.YELLOW_BRIGHT + Color.GREEN_BACKGROUND + "BOMBARDEEN A DIEGO" + Color.RESET);
-		//CALCULO DEL TIEMPO
-        System.out.println("Has tardado " + ((System.currentTimeMillis() / 1000) - tiempoInicio) + " en responder");
+        System.out.println("Has tardado " + ((System.currentTimeMillis() / 1000) - tiempoInicio) + " segundos en responder");
 		long tiempoTardado = System.currentTimeMillis() / 1000 - tiempoInicio;
+		long puntuacion = 0;
+		puntuacion = calculoPuntos(acertado, tiempoTardado);
+		System.out.println(jugador.getNombre() + " ha conseguido " + puntuacion + " puntos esta ronda");
 		
-		jugador.setPuntuacion(jugador.getPuntuacion() + calculoPuntos(acertado, tiempoTardado));
+		jugador.setPuntuacion(jugador.getPuntuacion() + puntuacion);
 	}
 	
 	public void selectorDificultad() {
@@ -152,14 +155,14 @@ public class Trivia {
 	}
 
 	public long calculoPuntos(boolean acertado, long tiempoTardado) {
-		long puntuacion = 1000;
+		long puntuacion = 0;
 		
 		
 		if(acertado == true) {
 			puntuacion = 1000 - (tiempoTardado * 10);
 		}
 		else if(acertado == false && tiempoTardado > 10) {
-			// Aqui restariamos puntos por fallar y tardar mucho
+			puntuacion -= tiempoTardado * 10;
 		}
 		
 		
@@ -280,7 +283,7 @@ public class Trivia {
 		 String decision;
 		 int tries = 0;
 		 
-		 System.out.println("ANTES DE EMPEZAR\n Selecciona el modo de juego: \n1.Individual 2.Multijugador(2-4 jugadores) 3.Atras");
+		 System.out.println("ANTES DE EMPEZAR\n Selecciona el modo de juego: \n1.Individual 2.Multijugador(2-4 jugadores) 3.Atrás");
 		 decision = sc.nextLine();
 		 
 		 while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3")) {
@@ -343,10 +346,19 @@ public class Trivia {
 	 //creamos nuevos jugadores con nuevos nombres
 	 private void setJugadores()
 	 {
+		 String nombre = "";
 		 for(int i = 0; i < numJugadores; i++)
 		 {
-			 System.out.println("¿Cúal es el nombre del jugador " + (i + 1) + "?");
-			 jugadores.set(i, new Jugador(sc.nextLine()));
+			 while(nombre.equals(""))
+			 {
+				 System.out.println("¿Cúal es el nombre del jugador " + (i + 1) + "?");
+				 nombre = sc.nextLine();
+				 if(nombre.equals(""))
+					 System.out.println("Ese nombre no es válido");
+				 else
+					 jugadores.set(i, new Jugador(nombre)); 
+			 }
+			 nombre = "";
 		 }
 	 }
 	 
