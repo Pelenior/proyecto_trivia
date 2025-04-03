@@ -27,7 +27,7 @@ public class Main {
 			{
 				turno = 0;
 				turnoTotal++;
-				//Individual 8 preguntas, multijugador 3?
+				//Individual 8 preguntas, multijugador 3, antes de la pregunta final
 				if((turnoTotal == 8 && trivia.getNumJugadores() == 1) || (turnoTotal == 3) && trivia.getNumJugadores() > 1) 
 				{
 					System.out.println(Color.RED_BOLD + "Última ronda" + Color.RESET + "...");

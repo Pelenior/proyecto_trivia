@@ -9,9 +9,59 @@ public class Trivia {
 	//Atributos
 	Scanner sc;
 	//Matriz cuadrada de preguntas, con fila 1[0] la pregunta y fila 2[1] la respuesta
-	String[][] preguntasRespuestasFacil = {{"¿Cuánto es 2+2?", "4"}, {"Es Mario y...", "Luigi"}, {"¿Quién escribió don Quijote?", "Cervantes"}, {"¿Quién es el protagonista de la saga \'The Legend of Zelda\'?", "Link"}, {"¿En qué año se descubrió América?", "1492"}};
-	String[][] preguntasRespuestasMedio = {{"¿Es \'Integer\' una clase?", "Si"}, {"¿Qué elemento tiene el símbolo \'Fe\'?", "Hierro"}, {"¿Es Java un lenguaje de programación orientado a objetos?", "Si"}, {"¿Qué estilo artístico es asociado con la obra de Salvador Dalí?", "Surrealismo"}, {"¿Cuál es el río más largo del mundo?", "Nilo"}};
-	String[][] preguntasRespuestasDificil = {{"¿En qué año se descubrió la tumba de Tutankamón?", "1922"}, {"¿En qué año se firmó la Declaración de la Independencia en Estados Unidos?", "1776"}, {"¿Quién es el mejor profesor de todos los tiempos sin duda alguna?", "Flan"}, {"¿Qué hace un elefante al despertar?", "Sombra"}, {"¿Cuál es el ipvx más moderno?", "ipv7"}};
+	 String[][] preguntasRespuestasFacil = {
+	            {"¿Cuánto es 2+2?\n a) Pez\n b) 4\n c) 2", "b"},
+	            {"Es Mario y...\n a) Mario verde\n b) Peach\n c) Luigi", "c"},
+	            {"¿Quién escribió Don Quijote?\n a) Picasso\n b) Cervantes\n c) Shakespeare", "b"},
+	            {"¿Quién pintó el Guernica?\n a) Diego Velázquez\n b) Joaquín Sorolla\n c) Ninguno de los dos", "c"},
+	            {"¿Cómo termina la película 'Titanic?'\n a) Jack termina siendo el rey del mundo submarino ('soy el rey del mundo' no especificó si era el marino)\n b) Jack y Rose acaban juntos\n c) Jack y Rose mueren juntos", "a"},
+	            {"¿Cuándo se descubrió América?\n a) 12 de octubre 1492\n b) 14 de noviembre 1490\n c) 10 de octubre 1400", "a"},
+	            {"¿En qué deporte se utiliza una pelota ovalada?\n a) Fútbol\n b) Baloncesto\n c) Rugby", "c"},
+	            {"¿Qué cantante es conocido como el 'Rey del Pop'?\n a) Pablo Alborán\n b) Harry Styles\n c) Michael Jackson", "c"},
+	            {"¿Cómo se llama el mamífero que pone huevos?\n a) Ovíparos\n b) Mamíferos\n c) ¿Hay animales que ponen huevos?", "a"},
+	            {"¿En qué continente se encuentra Egipto?\n a) Europa\n b) América\n c) África", "c"},
+	            {"¿Qué planeta es conocido como el 'planeta rojo'?\n a) Saturno\n b) Marte\n c) Júpiter", "b"},
+	            {"¿En qué lenguaje de programación se utiliza la función print() para mostrar mensajes en pantalla?\n a) XML\n b) Python\n c) C++", "b"},
+	            {"¿Cómo se llama el manga y anime donde un joven llamado Goku busca las Esferas del Dragón?\n a) One Piece\n b) Pokémon\n c) Dragon Ball", "c"},
+	            {"¿En el videojuego de la saga The Legend of Zelda el protagonista es?\n a) Link\n b) Zelda\n c) Navi", "a"},
+	            {"¿Quién es el amigo de Sonic?\n a) Tails\n b) El Primas\n c) Dr. Robotnik/Eggman", "a"}
+	        };
+
+	 String[][] preguntasRespuestasMedio = {
+	            {"¿Cuál es la capital de Finlandia?\n a) Helsinki\n b) Estocolmo\n c) Oslo", "a"},
+	            {"¿String es una variable primitiva?\n a) Sí\n b) No\n c) No sé", "b"},
+	            {"¿Don Quijote muere?\n a) No\n b) En el primer libro\n c) En el segundo libro", "c"},
+	            {"¿Quién cantó la canción 'Libre'?\n 'Libre\n Como el sol cuando amanece\n Yo soy libre como el mar'\n a) Isabel Pantoja\n b) Nino Bravo\n c) Julio Iglesias", "b"},
+	            {"¿Quién cantó 'El Perdón'?\n 'El perdón... El perdón\n Te lo da Dios\n Pero yo no, no \n Te lo da Dios\n Pero yo no, no'\n a) Diana Navarro\n b) Rosalía\n c) Ana Belén", "a"},
+	            {"¿Cuál es la diferencia entre == y .equals() en Java?\n a) == compara contenido o valor de los objetos y .equals() compara referencias de objetos.\n b) No hay diferencia\n c) == se usa en int y .equals() se usa en String", "c"},
+	            {"¿Cuál es el elemento químico con el símbolo 'Fe'?\n a) Francio\n b) Hierro\n c) Flúor", "b"},
+	            {"¿En qué año se firmó la Declaración de Independencia de los Estados Unidos?\n a) 1770\n b) 1776\n c) 1780", "b"},
+	            {"¿Quién pintó 'La última cena' y en qué año?\n a) Leonardo da Vinci pintada entre 1494 y 1498\n b) Leonardo da Vinci pintada entre 1490 y 1494\n c) Leonardo da Vinci pintada entre 1450 y 1458", "a"},
+	            {"¿Cuál es el río más largo del mundo: el Amazonas o el Nilo?\n a) Nilo\n b) Amazonas\n c) Ninguno, es el Ebro", "a"},
+	            {"¿Quién es el autor de la famosa pintura 'El Grito'?\n a) Frida Kahlo\n b) Edvard Munch\n c) Katsushika Hokusai", "b"},
+	            {"¿Qué estilo artístico es asociado con la obra de Salvador Dalí?\n a) Surrealismo\n b) Realismo\n c) Litúrgico", "a"},
+	            {"¿En qué museo se encuentra la pintura 'La Mona Lisa'?\n a) Museo de la Acrópolis\n b) Museo del Prado\n c) Museo del Louvre", "c"},
+	            {"¿De qué país es la banda Extremoduro?\n a) México\n b) España\n c) Colombia", "b"},
+	            {"'Betty la fea' es una telenovela...\n a) Mexicana\n b) Colombiana\n c) Venezolana", "b"}
+	        };
+	 
+	 String[][] preguntasRespuestasDificil = {
+	            {"¿En qué año se descubrió la tumba de Tutankamón?\n a) 1922\n b) 1910\n c) 1920", "a"},
+	            {"¿En qué año se disolvió la banda española Mecano?\n a) 1988\n b) 1980\n c) 1998", "c"},
+	            {"¿Quién hizo 'Entre dos aguas'?\n a) Vicente Amigo Girol\n b) Paco de Lucía\n c) Jimi Hendrix", "b"},
+	            {"¿Quién cantó ORIGINALMENTE 'Veremos a Dolores'?\n 'Sí, veremos a Dolores a caminar\n las calles de Madrid'\n a) Víctor Manuel\n b) Ana Belén\n c) Kendall Peña", "a"},
+	            {"¿Qué es el 'Deadlock' en Java y cómo puedes evitarlo?\n a) Es un bloqueo mutuo entre hilos; se evita adquiriendo bloqueos en el mismo orden.\n b) Ocurre cuando un hilo se detiene por completo debido a un error de sintaxis, y se evita eliminando todos los bloqueos en el código.\n c) Es cuando varios hilos se ejecutan al mismo tiempo sin problemas, y se evita ejecutándolos de manera secuencial.", "a"},
+	            {"¿Cómo funciona la recolección de basura (Garbage Collection) en Java?\n a) Se realiza manualmente usando el método System.gc() y se asegura de que no haya objetos inactivos en el programa.\n b) Destruye automáticamente los objetos en memoria cada vez que el programa se ejecuta sin necesidad de un recolector de basura.\n c) Elimina objetos no referenciados para liberar memoria automáticamente.", "c"},
+	            {"¿Qué es un Serializable en Java?\n a) Una clase que se utiliza para manejar la entrada y salida de datos a través de la red.\n b) Una interfaz que permite convertir un objeto en un flujo de bytes para ser almacenado o transmitido.\n c) Una interfaz que convierte los objetos en cadenas de texto para poder ser almacenados en bases de datos.", "b"},
+	            {"¿Quién fue el primer emperador romano?\n a) Augusto\n b) Julio César\n c) Tiberio", "a"},
+	            {"¿En qué año se fundó la ciudad de Constantinopla?\n a) 290 d.C\n b) 300 d.C\n c) 330 d.C", "c"},
+	            {"¿Quién escribió el libro 'No tengo boca y debo gritar'?\n a) Harlan Ellison\n b) Stephen King\n c) William Faulkner", "a"},
+	            {"¿Quién escribió 'Meridiano de sangre'?\n a) Philip Roth\n b) Cormac McCarthy\n c) Jack London", "b"},
+	            {"¿Quién escribió 'Indigno de ser Humano'?\n a) Liu Zongyuan\n b) Byung-Chul Han\n c) Osamu Dazai", "c"},
+	            {"¿Cómo se llama la yegua de Link?\n a) Epona\n b) Navi\n c) Tingle", "a"},
+	            {"En Naruto, ¿cuál es el nombre de la técnica secreta que Minato Namikaze usó para sellar al Zorro de Nueve Colas dentro de su hijo Naruto?\n a) Sello de Armadura de Hierro\n b) Sello de los Cinco Elementos\n c) Sello de los Ocho Trigramas", "c"},
+	            {"¿Qué hace un elefante al despertar?\n a) Se levanta.\n b) Se va con su manada.\n c) Sombra.", "c"}
+	        };
 	
 	String dificultad = "";
 	String jugadoresStr = "";
