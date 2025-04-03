@@ -5,7 +5,8 @@ public class Jugador {
 	 // Atributos
 	   long puntuacion; // int + más largo
 	   String nombre = "";
-	   int racha;
+	   int racha = 0;
+	   int vidas = 3;
 
 	   // constructor vacío
 	   public Jugador() {
@@ -21,6 +22,16 @@ public class Jugador {
 	       return puntuacion;
 	   }
 	   
+	   public String getNombre()
+	   {
+		   return nombre;
+	   }
+	   
+	   public int getVidas()
+	   {
+		   return vidas;
+	   }
+	   
 	   public void setPuntuacion(long puntuacion) {
 	       this.puntuacion = puntuacion;
 	       if(this.puntuacion < 0)
@@ -34,10 +45,12 @@ public class Jugador {
 		   this.nombre = nombre;
 	   }
 	   
-	   public String getNombre()
+	   public void setVidas(int vidas)
 	   {
-		   return nombre;
+		   this.vidas = vidas;
 	   }
+	   
+	   
 
 	  
 	}
