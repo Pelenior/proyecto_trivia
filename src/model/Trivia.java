@@ -189,6 +189,7 @@ public class Trivia {
 		long puntuacion = 0;
 		puntuacion = calculoPuntos(acertado, tiempoTardado);
 		
+		//vidas
 		if(numJugadores == 1 && !acertado)
 		{
 			jugador.setVidas(jugador.getVidas() - 1);
