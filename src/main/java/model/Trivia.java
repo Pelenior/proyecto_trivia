@@ -14,7 +14,7 @@ public class Trivia {
 	            {"Es Mario y...\n a) Mario verde\n b) Peach\n c) Luigi", "c"},
 	            {"¿Quién escribió Don Quijote?\n a) Picasso\n b) Cervantes\n c) Shakespeare", "b"},
 	            {"¿Quién pintó el Guernica?\n a) Diego Velázquez\n b) Joaquín Sorolla\n c) Ninguno de los dos", "c"},
-	            {"¿Cómo termina la película 'Titanic?'\n a) Jack termina siendo el rey del mundo submarino ('soy el rey del mundo' no especificó si era el marino)\n b) Jack y Rose acaban juntos\n c) Jack y Rose mueren juntos", "a"},
+	            {"¿Cómo termina la película 'Titanic?'\n a) Jack termina siendo el rey del mundo submarino ('soy el rey del mundo' no especificó si era el marino)\n b) Jack y Rose acaban juntos\n c) Jack y Rose mueren juntos", "c"},
 	            {"¿Cuándo se descubrió América?\n a) 12 de octubre 1492\n b) 14 de noviembre 1490\n c) 10 de octubre 1400", "a"},
 	            {"¿En qué deporte se utiliza una pelota ovalada?\n a) Fútbol\n b) Baloncesto\n c) Rugby", "c"},
 	            {"¿Qué cantante es conocido como el 'Rey del Pop'?\n a) Pablo Alborán\n b) Harry Styles\n c) Michael Jackson", "c"},
@@ -232,13 +232,13 @@ public class Trivia {
 	public long calculoPuntos(boolean acertado, long tiempoTardado) {
 		long puntuacion = 0;
 		
-		//si acertado, se resta a 1000 el tiempo multi por 10
+		//si acertado, se resta a 1000 el tiempo multi por 50
 		if(acertado == true) {
-			puntuacion = 1000 - (tiempoTardado * 10);
+			puntuacion = 1000 - (tiempoTardado * 50);
 		}
 		else if(acertado == false && tiempoTardado > 10) {
 			puntuacion -= tiempoTardado * 10;
-		}//si fallo y has tardado mas de 10seg te resta tu puntacion por el tiempo por 10
+		}//si fallo y has tardado mas de 10seg te resta tu puntacion por el tiempo por 50
 		
 		
 		return puntuacion;
