@@ -1,14 +1,15 @@
 package controller;
 import java.util.Scanner;
-
 import model.*;
 
-public class Main {
 
-	public static void main(String[] args) {
+public class Main {
+	
+ 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		Trivia trivia = new Trivia(sc);
+		Leaderboard leaderboard = new Leaderboard();
+		Trivia trivia = new Trivia(sc, leaderboard);
 		
 		int turno = 0;
 		int turnoTotal = 0;
@@ -17,6 +18,10 @@ public class Main {
 		
 		if(trivia.getSalir() == false) {
 			trivia.selectorDificultad();
+		}
+		else
+		{
+			return;
 		}
 		
 		while(turnoTotal < 9 && trivia.getJugadores().get(0).getVidas() > 0)
@@ -72,12 +77,23 @@ public class Main {
 				System.out.println("Y el ganador es...\n\n\n");
 				System.out.println(nombreGanador + " con " + puntuacionGanador + " puntos!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!😀");
 			}
+			System.out.println("¡Gracias por jugar!");
+			boolean isMulti = false;
+			if(trivia.getNumJugadores() > 1)
+				isMulti = true;
+			long[] puntuaciones = {0, 0, 0, 0};
+			String[] nombres = {"", "", "", ""};
+			for(int i = 0; i < trivia.getNumJugadores(); i++)
+			{
+				puntuaciones[i] = trivia.getJugadores().get(i).getPuntuacion();
+				nombres[i] = trivia.getJugadores().get(i).getNombre();
+			}
+			trivia.actualizarLeaderboard(puntuaciones, nombres, isMulti);
 		}
 		else
 		{
 			System.out.println("Te quedas sin vidas!");
 		}
-		System.out.println("¡Gracias por jugar!");
 	}
 
 }

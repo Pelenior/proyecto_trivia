@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Trivia {
 	//Atributos
 	Scanner sc;
+	Leaderboard leaderboard;
 	//Matriz cuadrada de preguntas, con fila 1[0] la pregunta y fila 2[1] la respuesta
 	 String[][] preguntasRespuestasFacil = {
 	            {"¿Cuánto es 2+2?\n a) Pez\n b) 4\n c) 2", "b"},
@@ -81,8 +82,9 @@ public class Trivia {
 		}
 	}
 	
-	public Trivia(Scanner sc) {
+	public Trivia(Scanner sc, Leaderboard leaderboard) {
 		this.sc = sc;
+		this.leaderboard = leaderboard;
 		init();//metodo que guarda jugadores
 	}
 	
@@ -248,10 +250,10 @@ public class Trivia {
 		  String decision;
 		  
 		  while(partida != true && salir != true) {
-		      System.out.println(Color.YELLOW_BOLD + "                   BIENVENIDO AL RELOJ DE ARENA"  + Color.YELLOW_BOLD_BRIGHT + "\n1.Iniciar Juego  |  2.¿Que es Reloj de Arena?  |  3.Salir\n" + Color.RESET);
+		      System.out.println(Color.YELLOW_BOLD + "                         TE DAMOS LA BIENVENIDA AL RELOJ DE ARENA"  + Color.YELLOW_BOLD_BRIGHT + "\n1.Iniciar Juego  |  2.¿Que es Reloj de Arena?  |  3.Ver puntuaciones más altas  |  4.Salir\n" + Color.RESET);
 		      decision = sc.nextLine();
-		      while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3")) {
-		    	  System.out.println(Color.RED_BRIGHT + "Visto que ha respondido incorrectamente le recordamos que debe introducir" + Color.RED_BOLD_BRIGHT + " 1, 2 o 3" + Color.RESET);
+		      while(!decision.equals("1") && !decision.equals("2") && !decision.equals("3") && !decision.equals("4")) {
+		    	  System.out.println(Color.RED_BRIGHT + "Visto que ha respondido incorrectamente le recordamos que debe introducir" + Color.RED_BOLD_BRIGHT + " 1, 2, 3 o 4" + Color.RESET);
 		    	  decision = sc.nextLine();
 		      }
 		      
@@ -264,6 +266,13 @@ public class Trivia {
 			    	  menuAyuda(); 
 				      break;
 			      case "3":
+			    	  System.out.println("Estas son las puntuaciones más altas hasta ahora");
+			    	  leaderboard.imprimirLeaderboard();
+			    	  System.out.println("Pulsa intro para continuar");
+			    	  sc.nextLine();
+			    	  menu();
+			    	  break;
+			      case "4":
 			    	  salir = true;
 			    	  System.out.println("Saliendo...");
 			    	  break;
@@ -416,6 +425,11 @@ public class Trivia {
 		 }
 		 
 		 crearJugadores();//crea jugadores
+	 }
+	 
+	 public void actualizarLeaderboard(long[] puntuaciones, String[] nombres, boolean isMulti)
+	 {
+		 leaderboard.actualizarLeaderboard(puntuaciones, nombres, isMulti);
 	 }
 	 
 	 //creamos nuevos jugadores con nuevos nombres
